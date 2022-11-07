@@ -13,6 +13,7 @@ from slither.core.declarations.solidity_variables import (
 )
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.slithir.operations import Binary, BinaryType
+from slither.utils.swc_mapping import SWCID
 
 
 def _timestamp(func: Function) -> List[Node]:
@@ -68,6 +69,7 @@ class Timestamp(AbstractDetector):
     )
     WIKI_EXPLOIT_SCENARIO = """"Bob's contract relies on `block.timestamp` for its randomness. Eve is a miner and manipulates `block.timestamp` to exploit Bob's contract."""
     WIKI_RECOMMENDATION = "Avoid relying on `block.timestamp`."
+    SWCID = SWCID.SWC116
 
     def _detect(self):
         """"""
@@ -86,6 +88,8 @@ class Timestamp(AbstractDetector):
 
                 for node in nodes:
                     info += ["\t- ", node, "\n"]
+                info += f"SWCID: {self.SWCID} \n"
+                info += f"IMPACT: {self.IMPACT} \n"
 
                 res = self.generate_result(info)
 

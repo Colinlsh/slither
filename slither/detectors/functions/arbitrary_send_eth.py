@@ -31,6 +31,7 @@ from slither.slithir.operations import (
 
 # pylint: disable=too-many-nested-blocks,too-many-branches
 from slither.utils.output import Output
+from slither.utils.swc_mapping import SWCID
 
 
 def arbitrary_send(func: Function):
@@ -119,6 +120,7 @@ Bob calls `setDestination` and `withdraw`. As a result he withdraws the contract
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Ensure that an arbitrary user cannot withdraw unauthorized funds."
+    SWCID = SWCID.SWC124
 
     def _detect(self) -> List[Output]:
         """"""
@@ -136,6 +138,9 @@ Bob calls `setDestination` and `withdraw`. As a result he withdraws the contract
 
                 for node in nodes:
                     info += ["\t- ", node, "\n"]
+                
+                info += f"SWCID: {self.SWCID} \n"
+                info += f"IMPACT: {self.IMPACT} \n"
 
                 res = self.generate_result(info)
 

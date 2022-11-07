@@ -6,7 +6,7 @@
 """
 
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
-
+from slither.utils.swc_mapping import SWCID
 
 class UninitializedLocalVars(AbstractDetector):
 
@@ -14,6 +14,7 @@ class UninitializedLocalVars(AbstractDetector):
     HELP = "Uninitialized local variables"
     IMPACT = DetectorClassification.MEDIUM
     CONFIDENCE = DetectorClassification.MEDIUM
+    SWCID = SWCID.SWC109
 
     WIKI = "https://github.com/crytic/slither/wiki/Detector-Documentation#uninitialized-local-variables"
 

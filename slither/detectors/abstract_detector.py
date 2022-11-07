@@ -51,6 +51,7 @@ class AbstractDetector(metaclass=abc.ABCMeta):
     HELP = ""  # help information
     IMPACT: DetectorClassification = DetectorClassification.UNIMPLEMENTED
     CONFIDENCE: DetectorClassification = DetectorClassification.UNIMPLEMENTED
+    SWCID= ""
 
     WIKI = ""
 
@@ -231,6 +232,7 @@ class AbstractDetector(metaclass=abc.ABCMeta):
         output.data["check"] = self.ARGUMENT
         output.data["impact"] = classification_txt[self.IMPACT]
         output.data["confidence"] = classification_txt[self.CONFIDENCE]
+        output.data["swcid"] = self.SWCID
 
         return output
 

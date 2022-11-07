@@ -6,7 +6,7 @@
 """
 
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
-
+from slither.utils.swc_mapping import SWCID
 
 class UninitializedStorageVars(AbstractDetector):
 
@@ -14,6 +14,7 @@ class UninitializedStorageVars(AbstractDetector):
     HELP = "Uninitialized storage variables"
     IMPACT = DetectorClassification.HIGH
     CONFIDENCE = DetectorClassification.HIGH
+    SWCID = SWCID.SWC109
 
     WIKI = "https://github.com/crytic/slither/wiki/Detector-Documentation#uninitialized-storage-variables"
 
@@ -108,6 +109,8 @@ Bob calls `func`. As a result, `owner` is overridden to `0`.
                 uninitialized_storage_variable,
                 " is a storage variable never initialized\n",
             ]
+            info += f"SWCID: {self.SWCID} \n"
+            info += f"IMPACT: {self.IMPACT} \n" 
             json = self.generate_result(info)
             results.append(json)
 

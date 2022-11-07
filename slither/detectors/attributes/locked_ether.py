@@ -12,6 +12,7 @@ from slither.slithir.operations import (
     LibraryCall,
     InternalCall,
 )
+from slither.utils.swc_mapping import SWCID
 
 
 class LockedEther(AbstractDetector):  # pylint: disable=too-many-nested-blocks
@@ -39,6 +40,7 @@ Every Ether sent to `Locked` will be lost."""
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Remove the payable attribute or add a withdraw function."
+    SWCID = SWCID.SWC132
 
     @staticmethod
     def do_no_send_ether(contract):
@@ -87,7 +89,8 @@ Every Ether sent to `Locked` will be lost."""
                     for function in funcs_payable:
                         info += ["\t - ", function, "\n"]
                     info += "\tBut does not have a function to withdraw the ether\n"
-
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n" 
                     json = self.generate_result(info)
 
                     results.append(json)

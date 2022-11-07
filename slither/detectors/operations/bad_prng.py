@@ -17,6 +17,7 @@ from slither.detectors.abstract_detector import AbstractDetector, DetectorClassi
 from slither.slithir.operations import BinaryType, Binary
 from slither.slithir.operations import SolidityCall
 from slither.utils.output import Output, AllSupportedOutput
+from slither.utils.swc_mapping import SWCID
 
 
 def collect_return_values_of_bad_PRNG_functions(f: Function) -> List:
@@ -115,6 +116,7 @@ As a result, Eve wins the game."""
     WIKI_RECOMMENDATION = (
         "Do not use `block.timestamp`, `now` or `blockhash` as a source of randomness"
     )
+    SWCID = SWCID.SWC120
 
     def _detect(self) -> List[Output]:
         """Detect bad PRNG due to the use of block.timestamp, now or blockhash (block.blockhash) as a source of randomness"""
@@ -125,6 +127,8 @@ As a result, Eve wins the game."""
 
                 for node in nodes:
                     info: List[AllSupportedOutput] = [func, ' uses a weak PRNG: "', node, '" \n']
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
                     results.append(res)
 

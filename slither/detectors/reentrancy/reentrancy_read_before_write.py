@@ -109,6 +109,8 @@ Do not report reentrancies that involve Ether (see `reentrancy-eth`)."""
                 for other_node in finding_value.nodes:
                     if other_node != finding_value.node:
                         info += ["\t\t- ", other_node, "\n"]
+            info += f"SWCID: {self.SWCID} \n"
+            info += f"IMPACT: {self.IMPACT} \n"
 
             # Create our JSON result
             res = self.generate_result(info)

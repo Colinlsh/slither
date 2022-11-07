@@ -10,6 +10,7 @@ from slither.core.declarations.solidity_variables import (
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.slithir.operations import LowLevelCall
 from slither.visitors.expression.export_values import ExportValues
+from slither.utils.swc_mapping import SWCID
 
 
 # Reference: https://smartcontractsecurity.github.io/SWC-registry/docs/SWC-111
@@ -72,6 +73,8 @@ contract ContractWithDeprecatedReferences {
     ]
     DEPRECATED_NODE_TYPES = [(NodeType.THROW, "throw", "revert()")]
     DEPRECATED_LOW_LEVEL_CALLS = [("callcode", "callcode", "delegatecall")]
+
+    SWCID = SWCID.SWC111
 
     def detect_deprecation_in_expression(self, expression):
         """Detects if an expression makes use of any deprecated standards.
@@ -171,7 +174,9 @@ contract ContractWithDeprecatedReferences {
                         info += [
                             f'\t- Usage of "{original_desc}" should be replaced with "{recommended_disc}"\n'
                         ]
-
+                    
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
                     results.append(res)
 

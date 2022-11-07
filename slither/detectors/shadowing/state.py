@@ -5,7 +5,7 @@ Module detecting shadowing of state variables
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.core.declarations import Contract
 from .common import is_upgradable_gap_variable
-
+from slither.utils.swc_mapping import SWCID
 
 def detect_shadowing(contract: Contract):
     ret = []
@@ -34,6 +34,7 @@ class StateShadowing(AbstractDetector):
     HELP = "State variables shadowing"
     IMPACT = DetectorClassification.HIGH
     CONFIDENCE = DetectorClassification.HIGH
+    SWCID = SWCID.SWC119
 
     WIKI = "https://github.com/crytic/slither/wiki/Detector-Documentation#state-variable-shadowing"
 

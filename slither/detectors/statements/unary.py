@@ -5,6 +5,7 @@ Module detecting the incorrect use of unary expressions
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.visitors.expression.expression import ExpressionVisitor
 from slither.core.expressions.unary_operation import UnaryOperationType, UnaryOperation
+from slither.utils.swc_mapping import SWCID
 
 
 class InvalidUnaryExpressionDetector(ExpressionVisitor):
@@ -59,6 +60,7 @@ contract Bug{
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Remove the unary expression."
+    SWCID = SWCID.SWC129
 
     def _detect(self):
         """
@@ -72,6 +74,8 @@ contract Bug{
                     and InvalidUnaryStateVariableDetector(variable.expression).result()
                 ):
                     info = [variable, f" uses an dangerous unary operator: {variable.expression}\n"]
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
                     json = self.generate_result(info)
                     results.append(json)
 
@@ -79,6 +83,8 @@ contract Bug{
                 for node in f.nodes:
                     if node.expression and InvalidUnaryExpressionDetector(node.expression).result():
                         info = [node.function, " uses an dangerous unary operator: ", node, "\n"]
+                        info += f"SWCID: {self.SWCID} \n"
+                        info += f"IMPACT: {self.IMPACT} \n"
                         res = self.generate_result(info)
                         results.append(res)
 

@@ -1,5 +1,6 @@
 import re
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
+from slither.utils.swc_mapping import SWCID
 
 # pylint: disable=bidirectional-unicode
 class RightToLeftOverride(AbstractDetector):
@@ -51,6 +52,7 @@ contract Token
 
     RTLO_CHARACTER_ENCODED = "\u202e".encode("utf-8")
     STANDARD_JSON = False
+    SWCID = SWCID.SWC130
 
     def _detect(self):
         results = []
@@ -79,6 +81,8 @@ contract Token
                 # We have a patch, so pattern.find will return at least one result
 
                 info += f"\t- {pattern.findall(source_encoded)[0]}\n"
+                info += f"SWCID: {self.SWCID} \n"
+                info += f"IMPACT: {self.IMPACT} \n"                
                 res = self.generate_result(info)
                 res.add_other(
                     "rtlo-character",
