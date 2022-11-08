@@ -10,6 +10,7 @@ from slither.formatters.functions.external_function import custom_format
 from slither.slithir.operations import InternalCall, InternalDynamicCall
 from slither.slithir.operations import SolidityCall
 from slither.utils.output import Output
+from slither.utils.swc_mapping import SWCID
 
 
 class ExternalFunction(AbstractDetector):
@@ -30,6 +31,8 @@ class ExternalFunction(AbstractDetector):
     WIKI_TITLE = "Public function that could be declared external"
     WIKI_DESCRIPTION = "`public` functions that are never called by the contract should be declared `external`, and its immutable parameters should be located in `calldata` to save gas."
     WIKI_RECOMMENDATION = "Use the `external` attribute for functions never called from the contract, and change the location of immutable parameters to `calldata` to save gas."
+
+    SWCID = SWCID.NONE
 
     @staticmethod
     def detect_functions_called(contract: Contract) -> List[Function]:
@@ -256,7 +259,8 @@ class ExternalFunction(AbstractDetector):
                             info += [f"{reference_arg} location should be calldata\n"]
                     for other_function_definition in all_function_definitions:
                         info += ["\t- ", other_function_definition, "\n"]
-
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
 
                     results.append(res)

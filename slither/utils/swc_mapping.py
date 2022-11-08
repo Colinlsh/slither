@@ -36,3 +36,4 @@ class SWCID:  # pylint: disable=too-few-public-methods
       SWC134="134"
       SWC135="135"
       SWC136="136"
+      NONE="999"

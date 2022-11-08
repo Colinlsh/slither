@@ -6,6 +6,7 @@ from slither.detectors.abstract_detector import AbstractDetector, DetectorClassi
 from slither.slithir.operations import Binary, BinaryType
 from slither.slithir.variables import Constant
 from slither.core.solidity_types.elementary_type import Int, Uint
+from slither.utils.swc_mapping import SWCID
 
 
 def typeRange(t):
@@ -103,6 +104,8 @@ contract A {
         """Fix the incorrect comparison by changing the value type or the comparison."""
     )
 
+    SWCID = SWCID.NONE
+
     flip_table = {
         BinaryType.GREATER: BinaryType.LESS,
         BinaryType.GREATER_EQUAL: BinaryType.LESS_EQUAL,
@@ -163,7 +166,8 @@ contract A {
                     for node in nodes:
                         info = [func, " contains a tautology or contradiction:\n"]
                         info += ["\t- ", node, "\n"]
-
+                        info += f"SWCID: {self.SWCID} \n"
+                        info += f"IMPACT: {self.IMPACT} \n"
                         res = self.generate_result(info)
                         results.append(res)
 

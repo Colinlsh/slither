@@ -14,7 +14,7 @@ from slither.core.declarations import Contract, Function
 from slither.core.declarations.solidity_variables import SolidityFunction
 from slither.core.variables.state_variable import StateVariable
 from slither.formatters.variables.possible_const_state_variables import custom_format
-
+from slither.utils.swc_mapping import SWCID
 
 def _is_valid_type(v: StateVariable) -> bool:
     t = v.type
@@ -54,6 +54,7 @@ class ConstCandidateStateVars(AbstractDetector):
     WIKI_DESCRIPTION = "Constant state variables should be declared constant to save gas."
     WIKI_RECOMMENDATION = "Add the `constant` attributes to state variables that never change."
 
+    SWCID = SWCID.NONE
     # https://solidity.readthedocs.io/en/v0.5.2/contracts.html#constant-state-variables
     valid_solidity_function = [
         SolidityFunction("keccak256()"),
@@ -115,6 +116,8 @@ class ConstCandidateStateVars(AbstractDetector):
         # Create a result for each finding
         for v in constable_variables:
             info = [v, " should be constant\n"]
+            info += f"SWCID: {self.SWCID} \n"
+            info += f"IMPACT: {self.IMPACT} \n"
             json = self.generate_result(info)
             results.append(json)
 

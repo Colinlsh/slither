@@ -10,6 +10,7 @@ from slither.formatters.exceptions import FormatImpossible
 from slither.formatters.utils.patches import apply_patch, create_diff
 from slither.utils.comparable_enum import ComparableEnum
 from slither.utils.output import Output, SupportedOutput
+from slither.utils.swc_mapping import SWCID
 
 if TYPE_CHECKING:
     from slither import Slither
@@ -51,7 +52,7 @@ class AbstractDetector(metaclass=abc.ABCMeta):
     HELP = ""  # help information
     IMPACT: DetectorClassification = DetectorClassification.UNIMPLEMENTED
     CONFIDENCE: DetectorClassification = DetectorClassification.UNIMPLEMENTED
-    SWCID= ""
+    SWCID= SWCID.NONE
 
     WIKI = ""
 
@@ -242,10 +243,11 @@ class AbstractDetector(metaclass=abc.ABCMeta):
         return
 
     def _log_result(self, results: List[Dict]) -> None:
-        info = "\n"
+        info = "\n--- START ---\n\r"
         for idx, result in enumerate(results):
             if self.slither.triage_mode:
                 info += f"{idx}: "
             info += result["description"]
         info += f"Reference: {self.WIKI}"
+        info += "\n--- END ---\n\r"
         self._log(info)
