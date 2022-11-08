@@ -12,7 +12,7 @@
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.slithir.operations import InternalCall, LibraryCall
 from slither.slithir.variables import ReferenceVariable
-
+from slither.utils.swc_mapping import SWCID
 
 class UninitializedStateVarsDetection(AbstractDetector):
     """
@@ -23,6 +23,7 @@ class UninitializedStateVarsDetection(AbstractDetector):
     HELP = "Uninitialized state variables"
     IMPACT = DetectorClassification.HIGH
     CONFIDENCE = DetectorClassification.HIGH
+    SWCID = SWCID.SWC109
 
     WIKI = "https://github.com/crytic/slither/wiki/Detector-Documentation#uninitialized-state-variables"
 

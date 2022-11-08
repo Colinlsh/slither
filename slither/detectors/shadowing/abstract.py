@@ -9,6 +9,7 @@ from slither.core.variables.state_variable import StateVariable
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.utils.output import Output, AllSupportedOutput
 from .common import is_upgradable_gap_variable
+from slither.utils.swc_mapping import SWCID
 
 
 def detect_shadowing(contract: Contract) -> List[List[StateVariable]]:
@@ -38,6 +39,7 @@ class ShadowingAbstractDetection(AbstractDetector):
     HELP = "State variables shadowing from abstract contracts"
     IMPACT = DetectorClassification.MEDIUM
     CONFIDENCE = DetectorClassification.HIGH
+    SWCID = SWCID.SWC119
 
     WIKI = "https://github.com/crytic/slither/wiki/Detector-Documentation#state-variable-shadowing-from-abstract-contracts"
 

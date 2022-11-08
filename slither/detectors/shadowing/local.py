@@ -3,7 +3,7 @@ Module detecting local variable shadowing
 """
 
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
-
+from slither.utils.swc_mapping import SWCID
 
 class LocalShadowing(AbstractDetector):
     """
@@ -14,6 +14,7 @@ class LocalShadowing(AbstractDetector):
     HELP = "Local variables shadowing"
     IMPACT = DetectorClassification.LOW
     CONFIDENCE = DetectorClassification.HIGH
+    SWCID = SWCID.SWC119
 
     WIKI = "https://github.com/crytic/slither/wiki/Detector-Documentation#local-variable-shadowing"
 

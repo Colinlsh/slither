@@ -7,6 +7,7 @@ from slither.core.solidity_types import ArrayType
 from slither.visitors.expression.export_values import ExportValues
 from slither.core.variables.state_variable import StateVariable
 from slither.formatters.variables.unused_state_variables import custom_format
+from slither.utils.swc_mapping import SWCID
 
 
 def detect_unused(contract):
@@ -53,6 +54,7 @@ class UnusedStateVars(AbstractDetector):
     WIKI_DESCRIPTION = "Unused state variable."
     WIKI_EXPLOIT_SCENARIO = ""
     WIKI_RECOMMENDATION = "Remove unused state variables."
+    SWCID = SWCID.SWC131
 
     def _detect(self):
         """Detect unused state variables"""
@@ -62,6 +64,8 @@ class UnusedStateVars(AbstractDetector):
             if unusedVars:
                 for var in unusedVars:
                     info = [var, " is never used in ", c, "\n"]
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n" 
                     json = self.generate_result(info)
                     results.append(json)
 

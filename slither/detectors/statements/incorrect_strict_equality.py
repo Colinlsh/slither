@@ -23,6 +23,7 @@ from slither.core.declarations.solidity_variables import (
     SolidityVariableComposed,
     SolidityFunction,
 )
+from slither.utils.swc_mapping import SWCID
 
 
 class IncorrectStrictEquality(AbstractDetector):
@@ -53,6 +54,8 @@ contract Crowdsale{
     WIKI_RECOMMENDATION = (
         """Don't use strict equality to determine if an account has enough Ether or tokens."""
     )
+
+    SWCID = SWCID.SWC123
 
     sources_taint = [
         SolidityVariable("now"),
@@ -153,7 +156,8 @@ contract Crowdsale{
                 # Output each node with the function info header as a separate result.
                 for node in nodes:
                     node_info = func_info + ["\t- ", node, "\n"]
-
+                    node_info += f"SWCID: {self.SWCID} \n"
+                    node_info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(node_info)
                     results.append(res)
 

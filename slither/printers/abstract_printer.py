@@ -17,6 +17,7 @@ class IncorrectPrinterInitialization(Exception):
 class AbstractPrinter(metaclass=abc.ABCMeta):
     ARGUMENT = ""  # run the printer with slither.py --ARGUMENT
     HELP = ""  # help information
+    SWCID = ""
 
     WIKI = ""
 

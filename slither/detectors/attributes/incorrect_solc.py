@@ -5,6 +5,7 @@
 import re
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.formatters.attributes.incorrect_solc import custom_format
+from slither.utils.swc_mapping import SWCID
 
 # group:
 # 0: ^ > >= < <= (optional)
@@ -82,6 +83,7 @@ Consider using the latest version of Solidity for testing."""
         "0.8.8",
         "^0.8.8",
     ]
+    SWCID = SWCID.SWC102
 
     def _check_version(self, version):
         op = version[0]
@@ -161,6 +163,9 @@ Consider using the latest version of Solidity for testing."""
                     self.compilation_unit.solc_version,
                     " is not recommended for deployment\n",
                 ]
+
+            info += f"SWCID: {self.SWCID} \n"
+            info += f"IMPACT: {self.IMPACT} \n"
 
             json = self.generate_result(info)
 

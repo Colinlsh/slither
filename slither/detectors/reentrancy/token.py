@@ -6,6 +6,7 @@ from slither.core.cfg.node import Node
 from slither.core.declarations import Function, Contract, SolidityVariableComposed
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.slithir.operations import LowLevelCall, HighLevelCall
+from slither.utils.swc_mapping import SWCID
 
 
 def _detect_token_reentrant(contract: Contract) -> Dict[Function, List[Node]]:
@@ -42,6 +43,7 @@ class TokenReentrancy(AbstractDetector):
     HELP = "Tokens that are reentrancies unsafe"
     IMPACT = DetectorClassification.MEDIUM
     CONFIDENCE = DetectorClassification.MEDIUM
+    SWCID = SWCID.SWC107
 
     WIKI = "https://github.com/crytic/slither/wiki/Detector-Documentation#token-reentrant"
 

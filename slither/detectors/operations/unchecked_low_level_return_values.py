@@ -4,6 +4,7 @@ Module detecting unused return values from low level
 from slither.detectors.abstract_detector import DetectorClassification
 from slither.detectors.operations.unused_return_values import UnusedReturnValues
 from slither.slithir.operations import LowLevelCall
+from slither.utils.swc_mapping import SWCID
 
 
 class UncheckedLowLevel(UnusedReturnValues):
@@ -36,6 +37,7 @@ If the low level is used to prevent blocking operations, consider logging failed
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Ensure that the return value of a low-level call is checked or logged."
+    SWCID = SWCID.SWC104
 
     def _is_instance(self, ir):  # pylint: disable=no-self-use
         return isinstance(ir, LowLevelCall)
