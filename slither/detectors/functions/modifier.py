@@ -8,6 +8,7 @@ default value can still be returned.
 
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.core.cfg.node import NodeType
+from slither.utils.swc_mapping import SWCID
 
 
 def is_revert(node):
@@ -59,6 +60,7 @@ If the condition in `myModif` is false, the execution of `get()` will return 0."
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "All the paths in a modifier must execute `_` or revert."
+    SWCID = SWCID.NONE
 
     def _detect(self):
         results = []
@@ -82,7 +84,8 @@ If the condition in `myModif` is false, the execution of `get()` will return 0."
                 else:
                     # Nothing was found in the outer scope
                     info = ["Modifier ", mod, " does not always execute _; or revert"]
-
+                    info += f"\nSWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
                     results.append(res)
 

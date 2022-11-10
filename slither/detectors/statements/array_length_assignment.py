@@ -8,6 +8,7 @@ from slither.slithir.operations import Assignment, Length
 from slither.slithir.variables.reference import ReferenceVariable
 from slither.slithir.operations.binary import Binary
 from slither.analyses.data_dependency.data_dependency import is_tainted
+from slither.utils.swc_mapping import SWCID
 
 
 def detect_array_length_assignment(contract):
@@ -103,6 +104,8 @@ Note that storage slots here are indexed via a hash of the indexers; nonetheless
 Otherwise, thoroughly review the contract to ensure a user-controlled variable cannot reach an array length assignment."""
     # endregion wiki_recommendation
 
+    SWCID = SWCID.SWC129
+
     def _detect(self):
         """
         Detect array length assignments
@@ -120,6 +123,8 @@ Otherwise, thoroughly review the contract to ensure a user-controlled variable c
                 ]
                 for node in array_length_assignments:
                     node_info = contract_info + ["\t- ", node, "\n"]
+                    node_info += f"SWCID: {self.SWCID} \n"
+                    node_info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(node_info)
                     results.append(res)
 

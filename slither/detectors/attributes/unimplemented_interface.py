@@ -6,7 +6,7 @@ Check for contracts which implement all interface functions but do not explicitl
 """
 
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
-
+from slither.utils.swc_mapping import SWCID
 
 class MissingInheritance(AbstractDetector):
     """
@@ -40,6 +40,7 @@ contract Something {
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Inherit from the missing interface or contract."
+    SWCID = SWCID.NONE
 
     @staticmethod
     def detect_unimplemented_interface(contract, interfaces):
@@ -136,6 +137,8 @@ contract Something {
             intended_interfaces = self.detect_unimplemented_interface(contract, interfaces)
             for interface in intended_interfaces:
                 info = [contract, " should inherit from ", interface, "\n"]
+                info += f"SWCID: {self.SWCID} \n"
+                info += f"IMPACT: {self.IMPACT} \n"
                 res = self.generate_result(info)
                 results.append(res)
         return results

@@ -1,6 +1,7 @@
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.slithir.operations import LowLevelCall
 from slither.analyses.data_dependency.data_dependency import is_tainted
+from slither.utils.swc_mapping import SWCID
 
 
 def controlled_delegatecall(function):
@@ -41,6 +42,7 @@ Bob calls `delegate` and delegates the execution to his malicious contract. As a
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Avoid using `delegatecall`. Use only trusted destinations."
+    SWCID = SWCID.SWC128
 
     def _detect(self):
         results = []
@@ -60,6 +62,8 @@ Bob calls `delegate` and delegates the execution to his malicious contract. As a
 
                     for node in nodes:
                         node_info = func_info + ["\t- ", node, "\n"]
+                        node_info += f"SWCID: {self.SWCID} \n"
+                        node_info += f"IMPACT: {self.IMPACT} \n"
                         res = self.generate_result(node_info)
                         results.append(res)
 

@@ -3,6 +3,7 @@ Detect incorrect erc20 interface.
 Some contracts do not return a bool on transfer/transferFrom/approve, which may lead to preventing the contract to be used with contracts compiled with recent solc (>0.4.22)
 """
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
+from slither.utils.swc_mapping import SWCID
 
 
 class IncorrectERC20InterfaceDetection(AbstractDetector):
@@ -34,6 +35,8 @@ contract Token{
     WIKI_RECOMMENDATION = (
         "Set the appropriate return values and types for the defined `ERC20` functions."
     )
+
+    SWCID = SWCID.NONE
 
     @staticmethod
     def incorrect_erc20_interface(signature):
@@ -110,6 +113,8 @@ contract Token{
                         function,
                         "\n",
                     ]
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
                     json = self.generate_result(info)
 
                     results.append(json)

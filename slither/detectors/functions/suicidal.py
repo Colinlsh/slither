@@ -5,6 +5,7 @@ A suicidal contract is an unprotected function that calls selfdestruct
 """
 
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
+from slither.utils.swc_mapping import SWCID
 
 
 class Suicidal(AbstractDetector):
@@ -35,6 +36,8 @@ Bob calls `kill` and destructs the contract."""
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Protect access to all sensitive functions."
+
+    SWCID = SWCID.SWC106
 
     @staticmethod
     def detect_suicidal_func(func):
@@ -75,7 +78,8 @@ Bob calls `kill` and destructs the contract."""
             for func in functions:
 
                 info = [func, " allows anyone to destruct the contract\n"]
-
+                info += f"SWCID: {self.SWCID} \n"
+                info += f"IMPACT: {self.IMPACT} \n"
                 res = self.generate_result(info)
 
                 results.append(res)
