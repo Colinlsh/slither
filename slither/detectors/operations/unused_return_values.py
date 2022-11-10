@@ -6,6 +6,7 @@ from slither.core.variables.state_variable import StateVariable
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.slithir.operations import HighLevelCall
 from slither.core.declarations import Function
+from slither.utils.swc_mapping import SWCID
 
 
 class UnusedReturnValues(AbstractDetector):
@@ -39,6 +40,7 @@ contract MyConc{
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Ensure that all the return values of the function calls are used."
+    SWCID = SWCID.SWC104
 
     def _is_instance(self, ir):  # pylint: disable=no-self-use
         return isinstance(ir, HighLevelCall) and (
@@ -85,7 +87,8 @@ contract MyConc{
 
                     for node in unused_return:
                         info = [f, " ignores return value by ", node, "\n"]
-
+                        info += f"SWCID: {self.SWCID} \n"
+                        info += f"IMPACT: {self.IMPACT} \n"
                         res = self.generate_result(info)
 
                         results.append(res)

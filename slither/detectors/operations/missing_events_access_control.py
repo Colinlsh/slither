@@ -7,6 +7,7 @@ from slither.detectors.abstract_detector import AbstractDetector, DetectorClassi
 from slither.analyses.data_dependency.data_dependency import is_tainted
 from slither.slithir.operations.event_call import EventCall
 from slither.core.solidity_types.elementary_type import ElementaryType
+from slither.utils.swc_mapping import SWCID
 
 
 class MissingEventsAccessControl(AbstractDetector):
@@ -43,6 +44,7 @@ contract C {
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Emit an event for critical parameter changes."
+    SWCID = SWCID.NONE
 
     @staticmethod
     def _detect_missing_events(contract):
@@ -94,6 +96,8 @@ contract C {
                 info = [function, " should emit an event for: \n"]
                 for (node, _sv, _mod) in nodes:
                     info += ["\t- ", node, " \n"]
+                info += f"SWCID: {self.SWCID} \n"
+                info += f"IMPACT: {self.IMPACT} \n"
                 res = self.generate_result(info)
                 results.append(res)
         return results

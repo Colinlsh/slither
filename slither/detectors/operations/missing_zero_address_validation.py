@@ -9,6 +9,7 @@ from slither.analyses.data_dependency.data_dependency import is_tainted
 from slither.core.solidity_types.elementary_type import ElementaryType
 from slither.slithir.operations import Send, Transfer, LowLevelCall
 from slither.slithir.operations import Call
+from slither.utils.swc_mapping import SWCID
 
 
 class MissingZeroAddressValidation(AbstractDetector):
@@ -45,6 +46,7 @@ Bob calls `updateOwner` without specifying the `newOwner`, so Bob loses ownershi
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Check that the address is not zero."
+    SWCID = SWCID.NONE
 
     def _zero_address_validation_in_modifier(self, var, modifier_exprs):
         for mod in modifier_exprs:
@@ -145,6 +147,8 @@ Bob calls `updateOwner` without specifying the `newOwner`, so Bob loses ownershi
                     info = [var, " lacks a zero-check on ", ":\n"]
                     for node in nodes:
                         info += ["\t\t- ", node, "\n"]
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
                     results.append(res)
         return results

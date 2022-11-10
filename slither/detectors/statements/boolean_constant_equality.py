@@ -8,6 +8,7 @@ from slither.slithir.operations import (
     BinaryType,
 )
 from slither.slithir.variables import Constant
+from slither.utils.swc_mapping import SWCID
 
 
 class BooleanEquality(AbstractDetector):
@@ -42,6 +43,8 @@ Boolean constants can be used directly and do not need to be compare to `true` o
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = """Remove the equality to the boolean constant."""
+
+    SWCID = SWCID.NONE
 
     @staticmethod
     def _detect_boolean_equality(contract):
@@ -83,7 +86,8 @@ Boolean constants can be used directly and do not need to be compare to `true` o
                         node,
                         "\n",
                     ]
-
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
                     results.append(res)
 

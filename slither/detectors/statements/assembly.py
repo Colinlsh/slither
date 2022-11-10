@@ -4,6 +4,7 @@ Module detecting usage of inline assembly
 
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.core.cfg.node import NodeType
+from slither.utils.swc_mapping import SWCID
 
 
 class Assembly(AbstractDetector):
@@ -21,6 +22,7 @@ class Assembly(AbstractDetector):
     WIKI_TITLE = "Assembly usage"
     WIKI_DESCRIPTION = "The use of assembly is error-prone and should be avoided."
     WIKI_RECOMMENDATION = "Do not use `evm` assembly."
+    SWCID = SWCID.SWC127
 
     @staticmethod
     def _contains_inline_assembly_use(node):
@@ -55,7 +57,9 @@ class Assembly(AbstractDetector):
 
                 for node in nodes:
                     info += ["\t- ", node, "\n"]
-
+                    
+                info += f"SWCID: {self.SWCID} \n"
+                info += f"IMPACT: {self.IMPACT} \n"
                 res = self.generate_result(info)
                 results.append(res)
 

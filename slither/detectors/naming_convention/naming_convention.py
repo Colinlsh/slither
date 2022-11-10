@@ -64,7 +64,8 @@ Solidity defines a [naming convention](https://solidity.readthedocs.io/en/v0.4.2
 
             if not self.is_cap_words(contract.name):
                 info = ["Contract ", contract, " is not in CapWords\n"]
-
+                info += f"SWCID: {self.SWCID} \n"
+                info += f"IMPACT: {self.IMPACT} \n"
                 res = self.generate_result(info)
                 res.add(contract, {"target": "contract", "convention": "CapWords"})
                 results.append(res)
@@ -72,7 +73,8 @@ Solidity defines a [naming convention](https://solidity.readthedocs.io/en/v0.4.2
             for struct in contract.structures_declared:
                 if not self.is_cap_words(struct.name):
                     info = ["Struct ", struct, " is not in CapWords\n"]
-
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
                     res.add(struct, {"target": "structure", "convention": "CapWords"})
                     results.append(res)
@@ -80,7 +82,8 @@ Solidity defines a [naming convention](https://solidity.readthedocs.io/en/v0.4.2
             for event in contract.events_declared:
                 if not self.is_cap_words(event.name):
                     info = ["Event ", event, " is not in CapWords\n"]
-
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
                     res.add(event, {"target": "event", "convention": "CapWords"})
                     results.append(res)
@@ -97,7 +100,8 @@ Solidity defines a [naming convention](https://solidity.readthedocs.io/en/v0.4.2
                     if func.name.startswith(("echidna_", "crytic_")):
                         continue
                     info = ["Function ", func, " is not in mixedCase\n"]
-
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
                     res.add(func, {"target": "function", "convention": "mixedCase"})
                     results.append(res)
@@ -112,7 +116,8 @@ Solidity defines a [naming convention](https://solidity.readthedocs.io/en/v0.4.2
                         correct_naming = self.is_mixed_case_with_underscore(argument.name)
                     if not correct_naming:
                         info = ["Parameter ", argument, " is not in mixedCase\n"]
-
+                        info += f"SWCID: {self.SWCID} \n"
+                        info += f"IMPACT: {self.IMPACT} \n"
                         res = self.generate_result(info)
                         res.add(argument, {"target": "parameter", "convention": "mixedCase"})
                         results.append(res)
@@ -125,7 +130,8 @@ Solidity defines a [naming convention](https://solidity.readthedocs.io/en/v0.4.2
                             var,
                             " used l, O, I, which should not be used\n",
                         ]
-
+                        info += f"SWCID: {self.SWCID} \n"
+                        info += f"IMPACT: {self.IMPACT} \n"
                         res = self.generate_result(info)
                         res.add(
                             var,
@@ -147,7 +153,8 @@ Solidity defines a [naming convention](https://solidity.readthedocs.io/en/v0.4.2
                             var,
                             " is not in UPPER_CASE_WITH_UNDERSCORES\n",
                         ]
-
+                        info += f"SWCID: {self.SWCID} \n"
+                        info += f"IMPACT: {self.IMPACT} \n"
                         res = self.generate_result(info)
                         res.add(
                             var,
@@ -165,7 +172,8 @@ Solidity defines a [naming convention](https://solidity.readthedocs.io/en/v0.4.2
                         correct_naming = self.is_mixed_case(var.name)
                     if not correct_naming:
                         info = ["Variable ", var, " is not in mixedCase\n"]
-
+                        info += f"SWCID: {self.SWCID} \n"
+                        info += f"IMPACT: {self.IMPACT} \n"
                         res = self.generate_result(info)
                         res.add(var, {"target": "variable", "convention": "mixedCase"})
                         results.append(res)
@@ -173,7 +181,8 @@ Solidity defines a [naming convention](https://solidity.readthedocs.io/en/v0.4.2
             for enum in contract.enums_declared:
                 if not self.is_cap_words(enum.name):
                     info = ["Enum ", enum, " is not in CapWords\n"]
-
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
                     res.add(enum, {"target": "enum", "convention": "CapWords"})
                     results.append(res)
@@ -181,6 +190,9 @@ Solidity defines a [naming convention](https://solidity.readthedocs.io/en/v0.4.2
             for modifier in contract.modifiers_declared:
                 if not self.is_mixed_case(modifier.name):
                     info = ["Modifier ", modifier, " is not in mixedCase\n"]
+
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
 
                     res = self.generate_result(info)
                     res.add(modifier, {"target": "modifier", "convention": "mixedCase"})

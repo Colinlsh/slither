@@ -4,6 +4,7 @@ Recursively check the called functions
 """
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.formatters.attributes.const_functions import custom_format
+from slither.utils.swc_mapping import SWCID
 
 
 class ConstantFunctionsAsm(AbstractDetector):
@@ -49,6 +50,8 @@ All the calls to `get` revert, breaking Bob's smart contract execution."""
         "Ensure the attributes of contracts compiled prior to Solidity 0.5.0 are correct."
     )
 
+    SWCID = SWCID.SWC127
+
     def _detect(self):
         """Detect the constant function using assembly code
 
@@ -68,6 +71,8 @@ All the calls to `get` revert, breaking Bob's smart contract execution."""
                         attr = "view" if f.view else "pure"
 
                         info = [f, f" is declared {attr} but contains assembly code\n"]
+                        info += f"SWCID: {self.SWCID} \n"
+                        info += f"IMPACT: {self.IMPACT} \n"
                         res = self.generate_result(info, {"contains_assembly": True})
 
                         results.append(res)

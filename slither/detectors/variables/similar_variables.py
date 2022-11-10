@@ -5,7 +5,7 @@ Do not check contract inheritance
 import difflib
 
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
-
+from slither.utils.swc_mapping import SWCID
 
 class SimilarVarsDetection(AbstractDetector):
     """
@@ -25,6 +25,8 @@ class SimilarVarsDetection(AbstractDetector):
     WIKI_DESCRIPTION = "Detect variables with names that are too similar."
     WIKI_EXPLOIT_SCENARIO = "Bob uses several variables with similar names. As a result, his code is difficult to review."
     WIKI_RECOMMENDATION = "Prevent variables from having similar names."
+    
+    SWCID = SWCID.NONE
 
     @staticmethod
     def similar(seq1, seq2):
@@ -83,6 +85,8 @@ class SimilarVarsDetection(AbstractDetector):
                     v_left = v1 if v1.name < v2.name else v2
                     v_right = v2 if v_left == v1 else v1
                     info = ["Variable ", v_left, " is too similar to ", v_right, "\n"]
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
                     json = self.generate_result(info)
                     results.append(json)
         return results

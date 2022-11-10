@@ -14,7 +14,6 @@ class UninitializedLocalVars(AbstractDetector):
     HELP = "Uninitialized local variables"
     IMPACT = DetectorClassification.MEDIUM
     CONFIDENCE = DetectorClassification.MEDIUM
-    SWCID = SWCID.SWC109
 
     WIKI = "https://github.com/crytic/slither/wiki/Detector-Documentation#uninitialized-local-variables"
 
@@ -35,6 +34,8 @@ Bob calls `transfer`. As a result, all Ether is sent to the address `0x0` and is
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Initialize all the variables. If a variable is meant to be initialized to zero, explicitly set it to zero to improve code readability."
+
+    SWCID = SWCID.SWC109
 
     key = "UNINITIALIZEDLOCAL"
 
@@ -109,6 +110,8 @@ Bob calls `transfer`. As a result, all Ether is sent to the address `0x0` and is
                 uninitialized_local_variable,
                 " is a local variable never initialized\n",
             ]
+            info += f"SWCID: {self.SWCID} \n"
+            info += f"IMPACT: {self.IMPACT} \n"
             json = self.generate_result(info)
             results.append(json)
 
