@@ -147,7 +147,7 @@ Bob calls `updateOwner` without specifying the `newOwner`, so Bob loses ownershi
                     info = [var, " lacks a zero-check on ", ":\n"]
                     for node in nodes:
                         info += ["\t\t- ", node, "\n"]
-                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"\nSWCID: {self.SWCID} \n"
                     info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
                     results.append(res)

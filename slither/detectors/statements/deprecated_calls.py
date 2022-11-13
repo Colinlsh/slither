@@ -175,7 +175,7 @@ contract ContractWithDeprecatedReferences {
                             f'\t- Usage of "{original_desc}" should be replaced with "{recommended_disc}"\n'
                         ]
                     
-                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"\nSWCID: {self.SWCID} \n"
                     info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
                     results.append(res)

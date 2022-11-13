@@ -164,7 +164,7 @@ Consider using the latest version of Solidity for testing."""
                     " is not recommended for deployment\n",
                 ]
 
-            info += f"SWCID: {self.SWCID} \n"
+            info += f"\nSWCID: {self.SWCID} \n"
             info += f"IMPACT: {self.IMPACT} \n"
 
             json = self.generate_result(info)

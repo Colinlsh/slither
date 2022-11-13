@@ -89,7 +89,7 @@ contract DerivedContract is BaseContract{
                     info = [shadow, " shadows:\n"]
                     for var in variables:
                         info += ["\t- ", var, "\n"]
-                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"\nSWCID: {self.SWCID} \n"
                     info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
                     results.append(res)

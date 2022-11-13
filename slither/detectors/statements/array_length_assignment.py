@@ -123,7 +123,7 @@ Otherwise, thoroughly review the contract to ensure a user-controlled variable c
                 ]
                 for node in array_length_assignments:
                     node_info = contract_info + ["\t- ", node, "\n"]
-                    node_info += f"SWCID: {self.SWCID} \n"
+                    node_info += f"\nSWCID: {self.SWCID} \n"
                     node_info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(node_info)
                     results.append(res)

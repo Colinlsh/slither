@@ -74,7 +74,7 @@ contract Bug{
                     and InvalidUnaryStateVariableDetector(variable.expression).result()
                 ):
                     info = [variable, f" uses an dangerous unary operator: {variable.expression}\n"]
-                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"\nSWCID: {self.SWCID} \n"
                     info += f"IMPACT: {self.IMPACT} \n"
                     json = self.generate_result(info)
                     results.append(json)
@@ -83,7 +83,7 @@ contract Bug{
                 for node in f.nodes:
                     if node.expression and InvalidUnaryExpressionDetector(node.expression).result():
                         info = [node.function, " uses an dangerous unary operator: ", node, "\n"]
-                        info += f"SWCID: {self.SWCID} \n"
+                        info += f"\nSWCID: {self.SWCID} \n"
                         info += f"IMPACT: {self.IMPACT} \n"
                         res = self.generate_result(info)
                         results.append(res)

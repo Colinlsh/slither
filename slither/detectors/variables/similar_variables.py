@@ -85,7 +85,7 @@ class SimilarVarsDetection(AbstractDetector):
                     v_left = v1 if v1.name < v2.name else v2
                     v_right = v2 if v_left == v1 else v1
                     info = ["Variable ", v_left, " is too similar to ", v_right, "\n"]
-                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"\nSWCID: {self.SWCID} \n"
                     info += f"IMPACT: {self.IMPACT} \n"
                     json = self.generate_result(info)
                     results.append(json)

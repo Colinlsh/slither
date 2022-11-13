@@ -87,7 +87,7 @@ contract MyConc{
 
                     for node in unused_return:
                         info = [f, " ignores return value by ", node, "\n"]
-                        info += f"SWCID: {self.SWCID} \n"
+                        info += f"\nSWCID: {self.SWCID} \n"
                         info += f"IMPACT: {self.IMPACT} \n"
                         res = self.generate_result(info)
 

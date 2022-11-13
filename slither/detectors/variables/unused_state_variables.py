@@ -64,7 +64,7 @@ class UnusedStateVars(AbstractDetector):
             if unusedVars:
                 for var in unusedVars:
                     info = [var, " is never used in ", c, "\n"]
-                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"\nSWCID: {self.SWCID} \n"
                     info += f"IMPACT: {self.IMPACT} \n" 
                     json = self.generate_result(info)
                     results.append(json)

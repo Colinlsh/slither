@@ -81,7 +81,7 @@ contract Token
                 # We have a patch, so pattern.find will return at least one result
 
                 info += f"\t- {pattern.findall(source_encoded)[0]}\n"
-                info += f"SWCID: {self.SWCID} \n"
+                info += f"\nSWCID: {self.SWCID} \n"
                 info += f"IMPACT: {self.IMPACT} \n"                
                 res = self.generate_result(info)
                 res.add_other(

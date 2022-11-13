@@ -123,7 +123,7 @@ Only report reentrancy that acts as a double call (see `reentrancy-eth`, `reentr
                 for other_node in finding_value.nodes:
                     if other_node != finding_value.node:
                         info += ["\t\t- ", other_node, "\n"]
-            info += f"SWCID: {self.SWCID} \n"
+            info += f"\nSWCID: {self.SWCID} \n"
             info += f"IMPACT: {self.IMPACT} \n"
             # Create our JSON result
             res = self.generate_result(info)

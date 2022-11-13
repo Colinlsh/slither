@@ -166,7 +166,7 @@ contract A {
                     for node in nodes:
                         info = [func, " contains a tautology or contradiction:\n"]
                         info += ["\t- ", node, "\n"]
-                        info += f"SWCID: {self.SWCID} \n"
+                        info += f"\nSWCID: {self.SWCID} \n"
                         info += f"IMPACT: {self.IMPACT} \n"
                         res = self.generate_result(info)
                         results.append(res)

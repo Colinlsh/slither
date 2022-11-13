@@ -259,7 +259,7 @@ class ExternalFunction(AbstractDetector):
                             info += [f"{reference_arg} location should be calldata\n"]
                     for other_function_definition in all_function_definitions:
                         info += ["\t- ", other_function_definition, "\n"]
-                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"\nSWCID: {self.SWCID} \n"
                     info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
 

@@ -116,7 +116,7 @@ class ConstCandidateStateVars(AbstractDetector):
         # Create a result for each finding
         for v in constable_variables:
             info = [v, " should be constant\n"]
-            info += f"SWCID: {self.SWCID} \n"
+            info += f"\nSWCID: {self.SWCID} \n"
             info += f"IMPACT: {self.IMPACT} \n"
             json = self.generate_result(info)
             results.append(json)

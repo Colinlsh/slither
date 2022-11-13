@@ -109,7 +109,7 @@ Bob calls `func`. As a result, `owner` is overridden to `0`.
                 uninitialized_storage_variable,
                 " is a storage variable never initialized\n",
             ]
-            info += f"SWCID: {self.SWCID} \n"
+            info += f"\nSWCID: {self.SWCID} \n"
             info += f"IMPACT: {self.IMPACT} \n" 
             json = self.generate_result(info)
             results.append(json)

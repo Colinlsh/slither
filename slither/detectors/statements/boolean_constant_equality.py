@@ -86,7 +86,7 @@ Boolean constants can be used directly and do not need to be compare to `true` o
                         node,
                         "\n",
                     ]
-                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"\nSWCID: {self.SWCID} \n"
                     info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
                     results.append(res)

@@ -78,7 +78,7 @@ Bob calls `kill` and destructs the contract."""
             for func in functions:
 
                 info = [func, " allows anyone to destruct the contract\n"]
-                info += f"SWCID: {self.SWCID} \n"
+                info += f"\nSWCID: {self.SWCID} \n"
                 info += f"IMPACT: {self.IMPACT} \n"
                 res = self.generate_result(info)
 

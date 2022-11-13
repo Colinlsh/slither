@@ -89,7 +89,7 @@ Every Ether sent to `Locked` will be lost."""
                     for function in funcs_payable:
                         info += ["\t - ", function, "\n"]
                     info += "\tBut does not have a function to withdraw the ether\n"
-                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"\nSWCID: {self.SWCID} \n"
                     info += f"IMPACT: {self.IMPACT} \n" 
                     json = self.generate_result(info)
 

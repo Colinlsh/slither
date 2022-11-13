@@ -110,7 +110,7 @@ Bob calls `transfer`. As a result, all Ether is sent to the address `0x0` and is
                 uninitialized_local_variable,
                 " is a local variable never initialized\n",
             ]
-            info += f"SWCID: {self.SWCID} \n"
+            info += f"\nSWCID: {self.SWCID} \n"
             info += f"IMPACT: {self.IMPACT} \n"
             json = self.generate_result(info)
             results.append(json)

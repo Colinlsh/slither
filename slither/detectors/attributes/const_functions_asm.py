@@ -71,7 +71,7 @@ All the calls to `get` revert, breaking Bob's smart contract execution."""
                         attr = "view" if f.view else "pure"
 
                         info = [f, f" is declared {attr} but contains assembly code\n"]
-                        info += f"SWCID: {self.SWCID} \n"
+                        info += f"\nSWCID: {self.SWCID} \n"
                         info += f"IMPACT: {self.IMPACT} \n"
                         res = self.generate_result(info, {"contains_assembly": True})
 

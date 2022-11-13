@@ -127,7 +127,7 @@ As a result, Eve wins the game."""
 
                 for node in nodes:
                     info: List[AllSupportedOutput] = [func, ' uses a weak PRNG: "', node, '" \n']
-                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"\nSWCID: {self.SWCID} \n"
                     info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(info)
                     results.append(res)

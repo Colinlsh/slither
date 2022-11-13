@@ -113,7 +113,7 @@ contract Token{
                         function,
                         "\n",
                     ]
-                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"\nSWCID: {self.SWCID} \n"
                     info += f"IMPACT: {self.IMPACT} \n"
                     json = self.generate_result(info)
 

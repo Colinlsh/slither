@@ -156,7 +156,7 @@ contract Crowdsale{
                 # Output each node with the function info header as a separate result.
                 for node in nodes:
                     node_info = func_info + ["\t- ", node, "\n"]
-                    node_info += f"SWCID: {self.SWCID} \n"
+                    node_info += f"\nSWCID: {self.SWCID} \n"
                     node_info += f"IMPACT: {self.IMPACT} \n"
                     res = self.generate_result(node_info)
                     results.append(res)

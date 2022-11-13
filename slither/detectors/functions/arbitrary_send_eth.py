@@ -139,7 +139,7 @@ Bob calls `setDestination` and `withdraw`. As a result he withdraws the contract
                 for node in nodes:
                     info += ["\t- ", node, "\n"]
                 
-                info += f"SWCID: {self.SWCID} \n"
+                info += f"\nSWCID: {self.SWCID} \n"
                 info += f"IMPACT: {self.IMPACT} \n"
 
                 res = self.generate_result(info)

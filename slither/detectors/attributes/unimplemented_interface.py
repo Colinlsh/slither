@@ -137,7 +137,7 @@ contract Something {
             intended_interfaces = self.detect_unimplemented_interface(contract, interfaces)
             for interface in intended_interfaces:
                 info = [contract, " should inherit from ", interface, "\n"]
-                info += f"SWCID: {self.SWCID} \n"
+                info += f"\nSWCID: {self.SWCID} \n"
                 info += f"IMPACT: {self.IMPACT} \n"
                 res = self.generate_result(info)
                 results.append(res)
