@@ -104,7 +104,7 @@ Note that storage slots here are indexed via a hash of the indexers; nonetheless
 Otherwise, thoroughly review the contract to ensure a user-controlled variable cannot reach an array length assignment."""
     # endregion wiki_recommendation
 
-    SWCID = SWCID.SWC129
+    SWCID = SWCID.NONE
 
     def _detect(self):
         """
