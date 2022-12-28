@@ -117,6 +117,8 @@ contract Bug {
                             overshadowed_entry[1],
                             f" ({overshadowed_entry[0]})\n",
                         ]
+                        info += f"SWCID: {self.SWCID} \n"
+                        info += f"IMPACT: {self.IMPACT} \n"
 
                     # Generate relevant JSON data for this shadowing definition.
                     res = self.generate_result(info)

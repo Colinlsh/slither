@@ -3,6 +3,7 @@ Module detecting usage of `tx.origin` in a conditional node
 """
 
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
+from slither.utils.swc_mapping import SWCID
 
 
 class TxOrigin(AbstractDetector):
@@ -36,6 +37,7 @@ Bob is the owner of `TxOrigin`. Bob calls Eve's contract. Eve's contract calls `
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Do not use `tx.origin` for authorization."
+    SWCID = SWCID.SWC115
 
     @staticmethod
     def _contains_incorrect_tx_origin_use(node):
@@ -76,6 +78,10 @@ Bob is the owner of `TxOrigin`. Bob calls Eve's contract. Eve's contract calls `
 
                 for node in nodes:
                     info = [func, " uses tx.origin for authorization: ", node, "\n"]
+                    
+                    info += f"SWCID: {self.SWCID} \n"
+                    info += f"IMPACT: {self.IMPACT} \n"
+
                     res = self.generate_result(info)
                     results.append(res)
 

@@ -40,7 +40,7 @@ Every Ether sent to `Locked` will be lost."""
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Remove the payable attribute or add a withdraw function."
-    SWCID = SWCID.SWC132
+    SWCID = SWCID.NONE
 
     @staticmethod
     def do_no_send_ether(contract):

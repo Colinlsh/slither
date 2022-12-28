@@ -42,7 +42,7 @@ Bob calls `delegate` and delegates the execution to his malicious contract. As a
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Avoid using `delegatecall`. Use only trusted destinations."
-    SWCID = SWCID.SWC128
+    SWCID = SWCID.SWC112
 
     def _detect(self):
         results = []
