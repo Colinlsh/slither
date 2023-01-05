@@ -120,7 +120,7 @@ Bob calls `setDestination` and `withdraw`. As a result he withdraws the contract
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Ensure that an arbitrary user cannot withdraw unauthorized funds."
-    SWCID = SWCID.SWC124
+    SWCID = SWCID.SWC105
 
     def _detect(self) -> List[Output]:
         """"""

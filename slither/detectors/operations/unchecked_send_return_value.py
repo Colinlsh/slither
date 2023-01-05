@@ -5,6 +5,7 @@ Module detecting unused return values from send
 from slither.detectors.abstract_detector import DetectorClassification
 from slither.detectors.operations.unused_return_values import UnusedReturnValues
 from slither.slithir.operations import Send
+from slither.utils.swc_mapping import SWCID
 
 
 class UncheckedSend(UnusedReturnValues):
@@ -37,6 +38,8 @@ If `send` is used to prevent blocking operations, consider logging the failed `s
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Ensure that the return value of `send` is checked or logged."
+
+    SWCID = SWCID.SWC104
 
     def _is_instance(self, ir):  # pylint: disable=no-self-use
         return isinstance(ir, Send)

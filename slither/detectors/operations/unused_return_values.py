@@ -18,6 +18,7 @@ class UnusedReturnValues(AbstractDetector):
     HELP = "Unused return values"
     IMPACT = DetectorClassification.MEDIUM
     CONFIDENCE = DetectorClassification.MEDIUM
+    SWCID = SWCID.NONE
 
     WIKI = "https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return"
 
@@ -40,7 +41,6 @@ contract MyConc{
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Ensure that all the return values of the function calls are used."
-    SWCID = SWCID.SWC104
 
     def _is_instance(self, ir):  # pylint: disable=no-self-use
         return isinstance(ir, HighLevelCall) and (

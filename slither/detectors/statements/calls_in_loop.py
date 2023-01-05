@@ -11,6 +11,7 @@ from slither.slithir.operations import (
     Transfer,
     InternalCall,
 )
+from slither.utils.swc_mapping import SWCID
 
 
 def detect_call_in_loop(contract: Contract) -> List[Node]:
@@ -85,6 +86,8 @@ If one of the destinations has a fallback function that reverts, `bad` will alwa
     # endregion wiki_exploit_scenario
 
     WIKI_RECOMMENDATION = "Favor [pull over push](https://github.com/ethereum/wiki/wiki/Safety#favor-pull-over-push-for-external-calls) strategy for external calls."
+
+    SWCID = SWCID.SWC113
 
     def _detect(self) -> List[Output]:
         """"""
